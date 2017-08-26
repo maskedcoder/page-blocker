@@ -1,0 +1,10 @@
+{
+  "appName": {
+    "message": "Page Blocker",
+    "description": "The name of the application"
+  },
+  "appDescription": {
+    "message": "Requires you to stop and think before continuing to a web page in your blocked list",
+    "description": "The description of the application"
+  }
+}
