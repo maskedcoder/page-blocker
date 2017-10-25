@@ -5,8 +5,6 @@ import del from 'del';
 import runSequence from 'run-sequence';
 import { stream as wiredep } from 'wiredep';
 
-const manifest = require('./dist/manifest.json');
-
 const $ = gulpLoadPlugins();
 
 gulp.task('extras', () =>
@@ -55,7 +53,11 @@ gulp.task('html', () =>
   gulp.src('app/*.html')
     .pipe($.useref({ searchPath: ['.tmp', 'app', '.'] }))
     .pipe($.sourcemaps.init())
-    .pipe($.if('*.js', $.uglify()))
+    .pipe($.if('*.js', $.uglify({
+      output: {
+        ascii_only: true,
+      },
+    })))
     .pipe($.if('*.css', $.cleanCss({ compatibility: '*' })))
     .pipe($.sourcemaps.write())
     .pipe($.if('*.html', $.htmlmin({ removeComments: true, collapseWhitespace: true })))
@@ -75,7 +77,11 @@ gulp.task('chromeManifest', () =>
     }))
   .pipe($.if('*.css', $.cleanCss({ compatibility: '*' })))
   .pipe($.if('*.js', $.sourcemaps.init()))
-  .pipe($.if('*.js', $.uglify()))
+  .pipe($.if('*.js', $.uglify({
+    output: {
+      ascii_only: true,
+    },
+  })))
   .pipe($.if('*.js', $.sourcemaps.write('.')))
   .pipe(gulp.dest('dist'))
 );
@@ -117,11 +123,13 @@ gulp.task('wiredep', () => {
     .pipe(gulp.dest('app'));
 });
 
-gulp.task('package', () =>
-  gulp.src('dist/**')
+gulp.task('package', () => {
+  const manifest = require('./dist/manifest.json');
+
+  return gulp.src('dist/**')
       .pipe($.zip(`Page Blocker-${manifest.version}.zip`))
-      .pipe(gulp.dest('package'))
-);
+      .pipe(gulp.dest('package'));
+});
 
 gulp.task('build', (cb) => {
   runSequence(
