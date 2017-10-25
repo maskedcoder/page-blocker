@@ -41,7 +41,7 @@ function showWarning(violations) {
   const html = `
 <div class="page-block__content">
   <p><strong>Are you sure you want to continue?</strong></p>
-  <p>This page has the following violations:</p>
+  <p>This page matches the following selectors:</p>
   <ul>
     ${violations}
   </ul>
@@ -62,11 +62,12 @@ function checkSites(sites) {
   const matches = sites.filter(site => (new RegExp(site.name)).test(location.href));
 
   if (matches) {
-    const violations = Array.prototype.concat.apply([], matches.map((site) => {
-      const rules = site.rules.replace(/\n/g, ',');
-
-      return Array.from(document.querySelectorAll(rules));
-    })).map($el => $el.innerText);
+    const violations = Array.prototype.concat.apply([], matches.map((site) =>
+      site.rules
+        .split('\n')
+        .filter(rule => document.querySelector(rule)))
+    ).map(rule => `<li>${rule}</li>`)
+     .join('');
 
     if (violations.length) {
       showWarning(violations);
