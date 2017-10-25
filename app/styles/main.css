@@ -6,8 +6,6 @@
 
 html {
   box-sizing: border-box;
-
-  background: #f1f1f1;
 }
 
 body {
@@ -16,6 +14,7 @@ body {
   font-family: Roboto, 'Segoe UI', Tahoma, sans-serif;
 }
 
+h1,
 h2 {
   color: #757575;
   font-weight: 500;
@@ -49,7 +48,17 @@ button {
 
 .c-page {
   min-height: 400px;
+
+  background: #f1f1f1;
 }
+
+  .c-page--small {
+    min-width: 300px;
+    min-height: 0;
+    max-height: 600px;
+
+    background: #fff;
+  }
 
   .c-page__content {
     margin: 0 auto;
@@ -61,6 +70,59 @@ button {
     background: #fff;
     box-shadow: 0 2px 6px #888;
   }
+
+
+
+
+.c-tab {
+  overflow: hidden;
+  padding: 0.5rem 0;
+}
+
+  .c-tab + .c-tab {
+    border-top: 1px solid rgba(0,0,0,0.2);
+  }
+
+  .c-tab__header {
+    margin: 0 1rem;
+
+    cursor: pointer;
+  }
+
+    .c-tab__title {
+      margin: 0.2rem 0;
+
+      vertical-align: middle;
+
+      -webkit-margin-before: 0;
+      -webkit-margin-after: 0;
+    }
+
+    .c-tab__header:after {
+      display: inline-block;
+      width: 36px;
+      height: 36px;
+
+      background: url(data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 36 36" stroke="#757575" fill="none"><path d="M8,13 l10,10 10,-10" stroke-width="2"></path></svg>);
+
+      content: '';
+    }
+
+      .is-active .c-tab__header:after {
+        transform: rotateZ(180deg);
+      }
+
+  .c-tab__content {
+    overflow: auto;
+    margin: 0;
+    max-height: 0;
+
+    transition: max-height 0.3s ease-in;
+  }
+
+    .is-active .c-tab__content {
+      max-height: 400px;
+    }
 
 
 
@@ -180,6 +242,7 @@ button {
 
 .c-single-line {
   display: flex;
+  align-items: center;
   justify-content: space-between;
 }
 
