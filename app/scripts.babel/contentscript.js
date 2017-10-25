@@ -59,7 +59,7 @@ function showWarning(violations) {
 }
 
 function checkSites(sites) {
-  const matches = sites.filter(site => (new RegExp(site)).test(location.host));
+  const matches = sites.filter(site => (new RegExp(site.name)).test(location.href));
 
   if (matches) {
     const violations = Array.prototype.concat.apply([], matches.map((site) => {
