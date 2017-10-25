@@ -7,7 +7,7 @@ function removePageBlock() {
 }
 
 function showWarning(violations) {
-  document.body.className += ' page-block-scroll-lock';
+  document.body.parentElement.className += ' page-block-scroll-lock';
 
   const style = document.createElement('style');
   style.className = 'js-page-block';
@@ -17,15 +17,45 @@ function showWarning(violations) {
   overflow: hidden !important;
 }
 
-.page-block {
-  position: fixed;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  overflow-y: scroll;
-  background: #fff;
-  z-index: 99999;
+#page-block-842381254862 {
+  display: block !important;
+
+  visibility: initial !important;
+  font: initial !important;
+  list-style: initial !important;
+  letter-spacing: normal !important;
+  text-align: initial !important;
+  text-indent: initial !important;
+  text-transform: initial !important;
+  white-space: initial !important;
+  word-spacing: initial !important;
+  cursor: default !important;
+
+  position: fixed !important;
+  left: 0 !important;
+  top: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  z-index: 2147483647 !important;
+  overflow-y: scroll !important;
+
+  font-size: 16px !important;
+  font-family: Roboto, 'Segoe UI', Tahoma, sans-serif !important;
+  color: #000 !important;
+
+  background: #fff !important;
+}`;
+
+  const $el = document.createElement('div');
+  const shadow = $el.attachShadow({ mode: 'open' });
+
+  $el.className = 'js-page-block';
+  $el.id = 'page-block-842381254862';
+
+  const html = `
+<style>
+:host {
+  contain: content;
 }
 
 .page-block__content {
@@ -33,12 +63,7 @@ function showWarning(violations) {
   max-width: 300px;
   margin: 20vh auto;
 }
-`;
-
-  const $el = document.createElement('div');
-  $el.className = 'js-page-block page-block';
-
-  const html = `
+</style>
 <div class="page-block__content">
   <p><strong>Are you sure you want to continue?</strong></p>
   <p>This page matches the following selectors:</p>
@@ -48,14 +73,15 @@ function showWarning(violations) {
   <button class="js-page-block-remove">Yes, I'm sure</button>
 </div>`;
 
-  $el.innerHTML = html;
+  shadow.innerHTML = html;
 
   document.head.appendChild(style);
-  document.body.appendChild($el);
+  document.body.parentElement.appendChild($el);
 
-  document.body.querySelector('.js-page-block-remove').addEventListener('click', () => {
-    removePageBlock();
-  });
+  shadow.querySelector('.js-page-block-remove')
+    .addEventListener('click', () => {
+      removePageBlock();
+    });
 }
 
 function checkSites(sites) {
