@@ -10,12 +10,34 @@
     <!-- endbuild -->
   </head>
   <body>
-    <h1>'Allo, 'Allo!</h1>
-
     <!-- build:js scripts/options-vendor.js -->
     <!-- bower:js -->
     <!-- endbower -->
     <!-- endbuild -->
+
+    <h1>Sites</h1>
+
+    <table class="js-sites-table">
+    </table>
+
+    <label for="edit-site" class="js-edit-site-input" hidden>Edit site name: <input id="edit-site" class="js-edit-site-name" type="text"></label>
+    <button class="js-edit-site" hidden>Save edit</button>
+
+    <label for="new-site" class="js-add-site-input">New site: <input id="new-site" class="js-new-site-name" type="text"></label>
+    <button class="js-add-site">Add</button>
+
+    <h1>Rules</h1>
+    <p class="js-which-site"><em>Select a site to add rules</em></p>
+    <textarea name="site-rules" id="site-rules" class="js-site-rules" cols="30" rows="10"></textarea>
+    <div>
+      <button class="js-save-rules">Update site rules</button>
+    </div>
+
+    <hr>
+
+    <button class="js-save">Save</button>
+    <div class="js-status"></div>
+
 
     <!-- build:js scripts/options.js -->
     <script src="scripts/options.js"></script>
