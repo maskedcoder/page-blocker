@@ -1,5 +1,5 @@
 <!doctype html>
-<html>
+<html class="c-page">
   <head>
     <!-- build:css styles/options-vendor.css -->
     <!-- bower:css -->
@@ -8,35 +8,105 @@
     <!-- build:css styles/main.css -->
     <link href="styles/main.css" rel="stylesheet">
     <!-- endbuild -->
+
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,500" rel="stylesheet">
   </head>
-  <body>
+  <body class="c-page__content">
     <!-- build:js scripts/options-vendor.js -->
     <!-- bower:js -->
     <!-- endbower -->
     <!-- endbuild -->
 
-    <h1>Sites</h1>
+    <div class="c-modal-overlay  js-overlay"></div>
 
-    <table class="js-sites-table">
-    </table>
+    <dialog class="c-dialog  js-dialog">
+      <header class="c-single-line">
+        <h1 class="c-dialog__title  js-title">Add site</h1>
+        <button class="c-dialog__close  js-close-button" aria-label="Close">
+          <span class="c-effect  js-effect"></span>
+        </button>
+      </header>
+      <main class="c-dialog__content  js-dialog-content">
+      </main>
+      <footer class="c-dialog__footer">
+        <button class="c-btn  js-close-button">
+          Cancel
+          <span class="c-effect  js-effect"></span>
+        </button>
+        <button class="c-btn c-btn--bright  js-okay-button" disabled>
+          Save
+          <span class="c-effect c-effect--bright  js-effect"></span>
+        </button>
+      </footer>
+    </dialog>
 
-    <label for="edit-site" class="js-edit-site-input" hidden>Edit site name: <input id="edit-site" class="js-edit-site-name" type="text"></label>
-    <button class="js-edit-site" hidden>Save edit</button>
+    <div class="c-single-line">
+      <h2>Sites</h2>
 
-    <label for="new-site" class="js-add-site-input">New site: <input id="new-site" class="js-new-site-name" type="text"></label>
-    <button class="js-add-site">Add</button>
-
-    <h1>Rules</h1>
-    <p class="js-which-site"><em>Select a site to add rules</em></p>
-    <textarea name="site-rules" id="site-rules" class="js-site-rules" cols="30" rows="10"></textarea>
-    <div>
-      <button class="js-save-rules">Update site rules</button>
+      <button class="c-btn  js-add-dlg">
+        Add
+        <span class="c-effect  js-effect"></span>
+      </button>
     </div>
 
-    <hr>
 
-    <button class="js-save">Save</button>
-    <div class="js-status"></div>
+    <ul class="c-list-table  js-sites-table"></ul>
+
+    <div class="u-pt">
+      <button class="c-btn c-btn--bright  js-save">
+        Save
+        <span class="c-effect c-effect--bright  js-effect"></span>
+      </button>
+      <div class="c-info  js-status"></div>
+    </div>
+
+
+    <template class="js-edit-rules-dialog">
+      <div class="c-input c-input--wide  js-input">
+        <label for="site-rules" class="c-input__label">Rules</label>
+        <textarea id="site-rules" name="site-rules" class="c-input__input  js-rules  js-input-box" cols="30" rows="8" autofocus></textarea>
+      </div>
+    </template>
+
+
+    <template class="js-edit-site-dialog">
+      <div class="c-input  js-input">
+        <label for="site-name" class="c-input__label">Site regex</label>
+        <input type="text" id="site-name" name="site-name" class="c-input__input  js-site  js-input-box" autofocus>
+      </div>
+    </template>
+
+
+    <template class="js-site-template">
+      <li class="c-list-table__item c-item  js-site" data-id="">
+        <div class="c-item__name js-name"></div>
+        <div class="c-item__right">
+          <button class="c-btn c-btn--icon  js-settings" title="Actions...">
+            &#8942;
+            <span class="c-effect  js-effect"></span>
+          </button>
+          <dialog class="c-menu  js-menu">
+            <button class="c-menu__item  js-row-edit-rules">
+              Edit rules
+              <span class="c-effect  js-effect"></span>
+            </button>
+            <button class="c-menu__item  js-row-edit-site">
+              Edit regex
+              <span class="c-effect  js-effect"></span>
+            </button>
+            <button class="c-menu__item  js-delete-site">
+              Remove
+              <span class="c-effect  js-effect"></span>
+            </button>
+          </dialog>
+        </div>
+      </li>
+    </template>
+
+
+    <template class="js-no-sites-info">
+      <li class="c-list-table__info  js-blank-entry">Click the ADD button to add a site</li>
+    </template>
 
 
     <!-- build:js scripts/options.js -->
