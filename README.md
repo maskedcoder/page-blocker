@@ -1,4 +1,4 @@
-# Page Blocker
+# Page Blocker [![Build Status](https://travis-ci.org/maskedcoder/page-blocker.svg?branch=master)](https://travis-ci.org/maskedcoder/page-blocker)
 
 Page Blocker is a Chrome extension that forces you to click a button before using certain web pages.
 
