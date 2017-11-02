@@ -6,7 +6,8 @@
     "test4",
     "test5",
     "test6",
-    "test7"
+    "test7",
+    "test8"
   ],
   "page": "<!DOCTYPE html><html><head></head><body></body></html>",
   "storage": [
@@ -57,6 +58,10 @@
     {
       "name": "test7",
       "rules": "html"
+    },
+    {
+      "name": "test8",
+      "rules": "html\n\nhead"
     }
   ]
 }

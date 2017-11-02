@@ -17,7 +17,9 @@ function loadModel(cb) {
 function updateBadge(url) {
   loadModel((data) => {
     const matches = data.filter(site => (new RegExp(site.name)).test(url));
-    const filters = matches.reduce((sum, site) => sum + site.rules.split('\n').length, 0);
+    const filters = matches.reduce((sum, site) => sum + site.rules.split('\n')
+                                                          .filter(rule => rule !== '')
+                                                          .length, 0);
 
     chrome.browserAction.setBadgeText({ text: String(filters) });
   });

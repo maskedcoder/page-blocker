@@ -147,6 +147,19 @@ describe('Content Script', () => {
     expect($violations[4].textContent).to.equal('html');
   });
 
+  it('should handle sites with a gap in the rules', () => {
+    dom.reconfigure({ url: 'http://test8.com/' });
+    dom.window.initialize();
+
+    expect($('.qa-page-block')).to.not.equal(null);
+
+    const $violations = $$('.qa-rule');
+
+    expect($violations.length).to.equal(2);
+    expect($violations[0].textContent).to.equal('html');
+    expect($violations[1].textContent).to.equal('head');
+  });
+
   it('should go away when the button is clicked', () => {
     dom.reconfigure({ url: 'http://test3.com/' });
     dom.window.initialize();

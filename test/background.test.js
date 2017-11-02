@@ -23,7 +23,7 @@ describe('Background', () => {
       displayErrors: true,
     });
 
-    chrome.tabs.set(['test1', 'test8', 'test9']);
+    chrome.tabs.set(['test1', 'test8', 'test9', 'test10']);
 
     chrome.storage.set([
       {
@@ -74,6 +74,10 @@ describe('Background', () => {
         name: /test9/,
         rules: 'html',
       },
+      {
+        name: /test10/,
+        rules: 'html\n\nhead',
+      },
     ]);
 
     chrome.runtime.install();
@@ -112,6 +116,11 @@ describe('Background', () => {
 
     chrome.tabs.changeTab(2);
     expect(chrome.browserAction.badgeText).to.equal('1');
+  });
+
+  it('should handle sites with a gap in the rules', () => {
+    chrome.tabs.changeTab(3);
+    expect(chrome.browserAction.badgeText).to.equal('2');
   });
 
   it('should continue to work when the database updates', () => {

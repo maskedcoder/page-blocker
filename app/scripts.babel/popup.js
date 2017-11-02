@@ -32,7 +32,9 @@ function checkSites(sites) {
 
     if (matches.length) {
       matches.forEach((site) => {
-        const rules = site.rules.split(/\n/g);
+        const rules = site.rules
+                            .split(/\n/g)
+                            .filter(rule => rule !== '');
 
         showSite(site.name, rules);
       });

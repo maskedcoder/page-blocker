@@ -132,6 +132,17 @@ describe('Popup', () => {
     expect($$('.qa-rule').length).to.equal(5);
   });
 
+  it('should handle sites with a gap in the rules', () => {
+    chrome.tabs.changeTab(7);
+    dom.window.initialize();
+
+    const $tabs = $$('.qa-tab');
+
+    expect($tabs.length).to.equal(1);
+    expect(getHeader($tabs[0])).to.equal('test8');
+    expect($$('.qa-rule').length).to.equal(2);
+  });
+
   it('should toggle lists when they are clicked on', () => {
     chrome.tabs.changeTab(3);
     dom.window.initialize();

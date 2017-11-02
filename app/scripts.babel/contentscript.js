@@ -91,7 +91,13 @@ function checkSites(sites) {
     const violations = Array.prototype.concat.apply([], matches.map((site) =>
       site.rules
         .split('\n')
-        .filter(rule => document.querySelector(rule)))
+        .filter(rule => {
+          if (rule) {
+            return document.querySelector(rule);
+          }
+
+          return null;
+        }))
     ).map(rule => `<li class="qa-rule">${rule}</li>`)
      .join('');
 
