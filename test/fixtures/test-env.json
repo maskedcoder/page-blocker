@@ -1,0 +1,62 @@
+{
+  "tabs": [
+    "test1",
+    "test2",
+    "test3",
+    "test4",
+    "test5",
+    "test6",
+    "test7"
+  ],
+  "page": "<!DOCTYPE html><html><head></head><body></body></html>",
+  "storage": [
+    {
+      "name": "test2",
+      "rules": ""
+    },
+    {
+      "name": "t3",
+      "rules": "html"
+    },
+    {
+      "name": "4",
+      "rules": "html\nhead\nbody"
+    },
+    {
+      "name": "test5",
+      "rules": ""
+    },
+    {
+      "name": "est5",
+      "rules": "html"
+    },
+    {
+      "name": "test6",
+      "rules": "html\nhead\nbody"
+    },
+    {
+      "name": "6",
+      "rules": "html\nhead\nbody"
+    },
+    {
+      "name": "test7",
+      "rules": "html"
+    },
+    {
+      "name": "test7",
+      "rules": "html"
+    },
+    {
+      "name": "test7",
+      "rules": "html"
+    },
+    {
+      "name": "test7",
+      "rules": "html"
+    },
+    {
+      "name": "test7",
+      "rules": "html"
+    }
+  ]
+}

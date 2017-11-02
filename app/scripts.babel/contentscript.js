@@ -49,7 +49,7 @@ function showWarning(violations) {
   const $el = document.createElement('div');
   const shadow = $el.attachShadow({ mode: 'open' });
 
-  $el.className = 'js-page-block';
+  $el.className = 'js-page-block  qa-page-block';
   $el.id = 'page-block-842381254862';
 
   const html = `
@@ -70,7 +70,7 @@ function showWarning(violations) {
   <ul>
     ${violations}
   </ul>
-  <button class="js-page-block-remove">Yes, I'm sure</button>
+  <button class="js-page-block-remove  qa-dismiss">Yes, I'm sure</button>
 </div>`;
 
   shadow.innerHTML = html;
@@ -92,7 +92,7 @@ function checkSites(sites) {
       site.rules
         .split('\n')
         .filter(rule => document.querySelector(rule)))
-    ).map(rule => `<li>${rule}</li>`)
+    ).map(rule => `<li class="qa-rule">${rule}</li>`)
      .join('');
 
     if (violations.length) {
@@ -107,4 +107,10 @@ function loadModel() {
   }, data => checkSites(data.sites));
 }
 
-loadModel();
+if (window.chrome) {
+  loadModel();
+} else {
+  window.initialize = function initialize() {
+    loadModel();
+  };
+}

@@ -1,12 +1,14 @@
 function showSite(name, rules) {
   const wrapper = document.createElement('article');
 
-  const items = rules.map(rule => `<li>${rule}</li>`).join('');
+  const items = rules.map(rule => `<li class="qa-rule">${rule}</li>`).join('');
 
-  wrapper.className = 'c-tab  js-tab';
+  wrapper.className = 'c-tab  js-tab  qa-tab';
 
   wrapper.innerHTML = `
-<div class="c-single-line c-tab__header  js-tab-header"><h2 class="c-tab__title">${name}</h2></div>
+<div class="c-single-line c-tab__header  js-tab-header  qa-tab-header">
+  <h2 class="c-tab__title  qa-tab-title">${name}</h2>
+</div>
 <ul class="c-tab__content  js-tab-content">
   ${items}
 </ul>
@@ -71,4 +73,10 @@ document.body.addEventListener('click', (e) => {
   }
 });
 
-loadModel();
+if (window.chrome) {
+  loadModel();
+} else {
+  window.initialize = function initialize() {
+    loadModel();
+  };
+}
